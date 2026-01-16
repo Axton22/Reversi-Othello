@@ -16,7 +16,8 @@ public class Board {
                  ea, eb, ec, ed, ee, ef, eg, eh,
                  fa, fb, fc, fd, fe, ff, fg, fh,
                  ga, gb, gc, gd, ge, gf, gg, gh,
-                 ha, hb, hc, hd, he, hf, hg, hh;   
+                 ha, hb, hc, hd, he, hf, hg, hh;  
+  
 
     public Board() {
         boardInitializer();
@@ -26,77 +27,77 @@ public class Board {
     // Se inicializan los nodos con todas sus direcciones en nulo
     public void boardInitializer() {
     
-        aa = new Node();
-        ab = new Node();
-        ac = new Node(); 
-        ad = new Node(); 
-        ae = new Node();
-        af = new Node();
-        ag = new Node();
-        ah = new Node();
+        aa = new Node('v');
+        ab = new Node('v');
+        ac = new Node('v'); 
+        ad = new Node('v'); 
+        ae = new Node('v');
+        af = new Node('v');
+        ag = new Node('v');
+        ah = new Node('v');
         
-        ba = new Node();
-        bb = new Node();
-        bc = new Node();
-        bd = new Node();
-        be = new Node();
-        bf = new Node();
-        bg = new Node();
-        bh = new Node();
+        ba = new Node('v');
+        bb = new Node('v');
+        bc = new Node('v');
+        bd = new Node('v');
+        be = new Node('v');
+        bf = new Node('v');
+        bg = new Node('v');
+        bh = new Node('v');
         
-        ca = new Node();
-        cb = new Node();
-        cc = new Node();
-        cd = new Node();
-        ce = new Node();
-        cf = new Node();
-        cg = new Node();
-        ch = new Node();
+        ca = new Node('v');
+        cb = new Node('v');
+        cc = new Node('v');
+        cd = new Node('v');
+        ce = new Node('v');
+        cf = new Node('v');
+        cg = new Node('v');
+        ch = new Node('v');
         
-        da = new Node();
-        db = new Node();
-        dc = new Node();
-        dd = new Node();
-        de = new Node();
-        df = new Node();
-        dg = new Node();
-        dh = new Node();
+        da = new Node('v');
+        db = new Node('v');
+        dc = new Node('v');
+        dd = new Node('b');
+        de = new Node('n');
+        df = new Node('v');
+        dg = new Node('v');
+        dh = new Node('v');
         
-        ea = new Node();
-        eb = new Node();
-        ec = new Node();
-        ed = new Node();
-        ee = new Node();
-        ef = new Node();
-        eg = new Node();
-        eh = new Node();
+        ea = new Node('v');
+        eb = new Node('v');
+        ec = new Node('v');
+        ed = new Node('n');
+        ee = new Node('b');
+        ef = new Node('v');
+        eg = new Node('v');
+        eh = new Node('v');
         
-        fa = new Node();
-        fb = new Node();
-        fc = new Node();
-        fd = new Node();
-        fe = new Node();
-        ff = new Node();
-        fg = new Node();
-        fh = new Node();
+        fa = new Node('v');
+        fb = new Node('v');
+        fc = new Node('v');
+        fd = new Node('v');
+        fe = new Node('v');
+        ff = new Node('v');
+        fg = new Node('v');
+        fh = new Node('v');
         
-        ga = new Node();
-        gb = new Node();
-        gc = new Node();
-        gd = new Node();
-        ge = new Node();
-        gf = new Node();
-        gg = new Node();
-        gh = new Node();
+        ga = new Node('v');
+        gb = new Node('v');
+        gc = new Node('v');
+        gd = new Node('v');
+        ge = new Node('v');
+        gf = new Node('v');
+        gg = new Node('v');
+        gh = new Node('v');
         
-        ha = new Node();
-        hb = new Node();
-        hc = new Node();
-        hd = new Node();
-        he = new Node();
-        hf = new Node();
-        hg = new Node();
-        hh = new Node();
+        ha = new Node('v');
+        hb = new Node('v');
+        hc = new Node('v');
+        hd = new Node('v');
+        he = new Node('v');
+        hf = new Node('v');
+        hg = new Node('v');
+        hh = new Node('v');
     }
     
     // Establece manualmente (a pata) las direcciones de cada uno de los nodos

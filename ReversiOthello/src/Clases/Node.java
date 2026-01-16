@@ -21,7 +21,7 @@ public class Node {
     private Token state; // Estado de la casilla en el tablero: sin ficha, con ficha balnca o con ficha negra
 
     // Constructor que cuando se llama inicializa todo en nulo
-    public Node() {
+    public Node(char state) {
         this.north = null;
         this.east = null;
         this.south = null;
@@ -30,7 +30,7 @@ public class Node {
         this.northwest = null;
         this.southeast = null;
         this.southwest = null;
-        this.state = null;
+        this.state = new Token(state);
     }
     
     // Setters y Getters
