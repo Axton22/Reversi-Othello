@@ -9,19 +9,19 @@ package Clases;
  * @author Axton Urbina
  */
 public class Token {
-    private boolean color; //True: blanco, False: negro
+    private char color; //v = vacío, n = negro, b = blanco
     
     //Contructor
-    public Token(boolean color) {
+    public Token(char color) {
         this.color = color;
     }
     
     //Setters y Getters
-    public boolean isColor() {
+    public char isColor() {
         return color;
     }
 
-    public void setColor(boolean color) {
+    public void setColor(char color) {
         this.color = color;
     }
      
