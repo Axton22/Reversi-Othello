@@ -23,6 +23,10 @@ public class Board {
         boardInitializer();
         setDirections();
     }
+
+    public Node getFirst() {
+        return aa;
+    }    
     
     // Se inicializan los nodos con todas sus direcciones en nulo
     public void boardInitializer() {

@@ -17,7 +17,7 @@ public class Token {
     }
     
     //Setters y Getters
-    public char isColor() {
+    public char getColor() {
         return color;
     }
 
