@@ -5,9 +5,11 @@
         <group>
             <file>file:/C:/NetBeansProjects/Reversi%20Othello%20Proyecto/ReversiOthello/src/Clases/Token.java</file>
             <file>file:/C:/NetBeansProjects/Reversi%20Othello%20Proyecto/ReversiOthello/src/Clases/Node.java</file>
+            <file>file:/C:/NetBeansProjects/Reversi%20Othello%20Proyecto/ReversiOthello/src/Clases/CharacterNode.java</file>
             <file>file:/C:/NetBeansProjects/Reversi%20Othello%20Proyecto/ReversiOthello/src/reversiothello/ReversiOthello.java</file>
             <file>file:/C:/NetBeansProjects/Reversi%20Othello%20Proyecto/ReversiOthello/src/Clases/Board.java</file>
             <file>file:/C:/NetBeansProjects/Reversi%20Othello%20Proyecto/ReversiOthello/src/Clases/Player.java</file>
+            <file>file:/C:/NetBeansProjects/Reversi%20Othello%20Proyecto/ReversiOthello/src/Clases/CharacterList.java</file>
             <file>file:/C:/NetBeansProjects/Reversi%20Othello%20Proyecto/ReversiOthello/src/Clases/Game.java</file>
         </group>
     </open-files>
