@@ -599,300 +599,420 @@ public class Board {
         gg.setSoutheast(hh);
     }
     
-    // Los siguientes métodos booleanos retornan verdadero si hay una jugada válida (para cada una de las direcciones)
-    public boolean eastTraversal(Node node, Player player) {
+    /* Los siguientes métodos booleanos retornan verdadero si hay una jugada válida
+    o encierro (para cada una de las direcciones)*/
+    public boolean eastTraversal(Node node, char myColor, char enemyColor) {
         Node aux = node;
-        
-        if (player.isTurn()) { // Turno blanco
-            while (aux.getEast() != null &&
-                    aux.getEast().getState().getColor() == 'n') {
-                aux = aux.getEast();
-            }
-            return aux.getEast() != null && 
-                    aux.getEast().getState().getColor() == 'b';
-        } else { // Turno negro
-            while (aux.getEast() != null && 
-                    aux.getEast().getState().getColor() == 'b') {
-                aux = aux.getEast();
-            }
-            return aux.getEast() != null &&
-                    aux.getEast().getState().getColor() == 'n';
-        } 
+
+        while (aux.getEast()!= null &&
+               aux.getEast().getToken().getState() == enemyColor) {
+            aux = aux.getEast();
+        }
+
+        return aux.getEast() != null &&
+               aux.getEast().getToken().getState() == myColor;
     }
     
-    public boolean westTraversal(Node node, Player player) {
+    public boolean westTraversal(Node node, char myColor, char enemyColor) {
         Node aux = node;
-        
-        if (player.isTurn()) { // Turno blanco
-            while (aux.getWest()!= null &&
-                    aux.getWest().getState().getColor() == 'n') {
-                aux = aux.getWest();
-            }
-            return aux.getWest() != null && 
-                    aux.getWest().getState().getColor() == 'b';
-        } else { // Turno negro
-            while (aux.getWest() != null && 
-                    aux.getWest().getState().getColor() == 'b') {
-                aux = aux.getWest();
-            }
-            return aux.getWest() != null &&
-                    aux.getWest().getState().getColor() == 'n';
-        } 
+
+        while (aux.getWest()!= null &&
+               aux.getWest().getToken().getState() == enemyColor) {
+            aux = aux.getWest();
+        }
+
+        return aux.getWest() != null &&
+               aux.getWest().getToken().getState() == myColor;
     }
     
-    public boolean northTraversal(Node node, Player player) {
+    public boolean northTraversal(Node node, char myColor, char enemyColor) {
         Node aux = node;
-        
-        if (player.isTurn()) { // Turno blanco
-            while (aux.getNorth()!= null &&
-                    aux.getNorth().getState().getColor() == 'n') {
-                aux = aux.getNorth();
-            }
-            return aux.getNorth() != null && 
-                    aux.getNorth().getState().getColor() == 'b';
-        } else { // Turno negro
-            while (aux.getNorth() != null && 
-                    aux.getNorth().getState().getColor() == 'b') {
-                aux = aux.getNorth();
-            }
-            return aux.getNorth() != null &&
-                    aux.getNorth().getState().getColor() == 'n';
-        } 
+
+        while (aux.getNorth()!= null &&
+               aux.getNorth().getToken().getState() == enemyColor) {
+            aux = aux.getNorth();
+        }
+
+        return aux.getNorth() != null &&
+               aux.getNorth().getToken().getState() == myColor;
     }
     
-    public boolean southTraversal(Node node, Player player) {
+    public boolean southTraversal(Node node, char myColor, char enemyColor) {
         Node aux = node;
-        
-        if (player.isTurn()) { // Turno blanco
-            while (aux.getSouth()!= null &&
-                    aux.getSouth().getState().getColor() == 'n') {
-                aux = aux.getSouth();
-            }
-            return aux.getSouth() != null && 
-                    aux.getSouth().getState().getColor() == 'b';
-        } else { // Turno negro
-            while (aux.getSouth() != null && 
-                    aux.getSouth().getState().getColor() == 'b') {
-                aux = aux.getSouth();
-            }
-            return aux.getSouth() != null &&
-                    aux.getSouth().getState().getColor() == 'n';
-        } 
+
+        while (aux.getSouth()!= null &&
+               aux.getSouth().getToken().getState() == enemyColor) {
+            aux = aux.getSouth();
+        }
+
+        return aux.getSouth() != null &&
+               aux.getSouth().getToken().getState() == myColor;
     }
     
-    public boolean northeastTraversal(Node node, Player player) {
+    public boolean northeastTraversal(Node node, char myColor, char enemyColor) {
         Node aux = node;
-        
-        if (player.isTurn()) { // Turno blanco
-            while (aux.getNortheast()!= null &&
-                    aux.getNortheast().getState().getColor() == 'n') {
-                aux = aux.getNortheast();
-            }
-            return aux.getNortheast() != null && 
-                    aux.getNortheast().getState().getColor() == 'b';
-        } else { // Turno negro
-            while (aux.getNortheast() != null && 
-                    aux.getNortheast().getState().getColor() == 'b') {
-                aux = aux.getNortheast();
-            }
-            return aux.getNortheast() != null &&
-                    aux.getNortheast().getState().getColor() == 'n';
-        } 
+
+        while (aux.getNortheast()!= null &&
+               aux.getNortheast().getToken().getState() == enemyColor) {
+            aux = aux.getNortheast();
+        }
+
+        return aux.getNortheast() != null &&
+               aux.getNortheast().getToken().getState() == myColor;
     }
     
-    public boolean northewestTraversal(Node node, Player player) {
+    public boolean northwestTraversal(Node node, char myColor, char enemyColor) {
         Node aux = node;
-        
-        if (player.isTurn()) { // Turno blanco
-            while (aux.getNorthwest()!= null &&
-                    aux.getNorthwest().getState().getColor() == 'n') {
-                aux = aux.getNorthwest();
-            }
-            return aux.getNorthwest() != null && 
-                    aux.getNorthwest().getState().getColor() == 'b';
-        } else { // Turno negro
-            while (aux.getNorthwest() != null && 
-                    aux.getNorthwest().getState().getColor() == 'b') {
-                aux = aux.getNorthwest();
-            }
-            return aux.getNorthwest() != null &&
-                    aux.getNorthwest().getState().getColor() == 'n';
-        } 
+
+        while (aux.getNorthwest()!= null &&
+               aux.getNorthwest().getToken().getState() == enemyColor) {
+            aux = aux.getNorthwest();
+        }
+
+        return aux.getNorthwest() != null &&
+               aux.getNorthwest().getToken().getState() == myColor;
     }
     
-    public boolean southeastTraversal(Node node, Player player) {
+    public boolean southeastTraversal(Node node, char myColor, char enemyColor) {
         Node aux = node;
-        
-        if (player.isTurn()) { // Turno blanco
-            while (aux.getSoutheast()!= null &&
-                    aux.getSoutheast().getState().getColor() == 'n') {
-                aux = aux.getSoutheast();
-            }
-            return aux.getSoutheast() != null && 
-                    aux.getSoutheast().getState().getColor() == 'b';
-        } else { // Turno negro
-            while (aux.getSoutheast() != null && 
-                    aux.getSoutheast().getState().getColor() == 'b') {
-                aux = aux.getSoutheast();
-            }
-            return aux.getSoutheast() != null &&
-                    aux.getSoutheast().getState().getColor() == 'n';
-        } 
+
+        while (aux.getSoutheast()!= null &&
+               aux.getSoutheast().getToken().getState() == enemyColor) {
+            aux = aux.getSoutheast();
+        }
+
+        return aux.getSoutheast() != null &&
+               aux.getSoutheast().getToken().getState() == myColor;
     }
     
-    public boolean southwestTraversal(Node node, Player player) {
+    public boolean southwestTraversal(Node node, char myColor, char enemyColor) {
         Node aux = node;
-        
-        if (player.isTurn()) { // Turno blanco
-            while (aux.getSouthwest()!= null &&
-                    aux.getSouthwest().getState().getColor() == 'n') {
-                aux = aux.getSouthwest();
-            }
-            return aux.getSouthwest() != null && 
-                    aux.getSouthwest().getState().getColor() == 'b';
-        } else { // Turno negro
-            while (aux.getSouthwest() != null && 
-                    aux.getSouthwest().getState().getColor() == 'b') {
-                aux = aux.getSouthwest();
-            }
-            return aux.getSouthwest() != null &&
-                    aux.getSouthwest().getState().getColor() == 'n';
-        } 
+
+        while (aux.getSouthwest() != null &&
+               aux.getSouthwest().getToken().getState() == enemyColor) {
+            aux = aux.getSouthwest();
+        }
+
+        return aux.getSouthwest() != null &&
+               aux.getSouthwest().getToken().getState() == myColor;
     }
     
+    // Localiza celdas (Nodos) válidos para una jugada y los marca con un carácter
     public void locateValidCell(Player player, CharacterList list) {
         Node first = aa;
         Node aux = first;
         CharacterNode auxNode;
-        
-        if (player.isTurn()) { // Turno blanco
-            while (aux != null) {
+
+        char myColor = ' ';
+        char enemyColor = ' ';
+
+        // Determina el color de las fichas del jugador actual
+        if (player.getColor().getState() == 'n') {
+            myColor = 'n';
+            enemyColor = 'b';
+        } else if(player.getColor().getState() == 'b') { 
+            myColor = 'b';
+            enemyColor = 'n';
+        }
+
+        while (aux != null) {
+
+            // Tiene que estar parado en una celda vacía
+            if (aux.getToken().getState() == 'v') {
+                boolean isValidCell = false;
+
+                /* Pregunta hacia una dirección en específico si la siguiente es el borde, 
+                si es una ficha enemiga y si termina en jugada válida*/
                 
-                // Primero ocupamos ubicarnos en una casilla vacía
-                if (aux.getState().getColor() == 'v') {
-                    boolean isValidCell = false;
-
-                    // Buscamos una ficha enemiga adyacente a la casilla vacía
-                    if (aux.getNorth() != null &&
-                            aux.getNorth().getState().getColor() == 'n') {
-                        if (northTraversal(aux, player)) isValidCell = true;
-                    } 
-                    if (aux.getSouth() != null &&
-                            aux.getSouth().getState().getColor() == 'n') {
-                        if (southTraversal(aux, player)) isValidCell = true;
-                    }
-                    if (aux.getEast() != null && 
-                            aux.getEast().getState().getColor() == 'n') {
-                        if (eastTraversal(aux, player)) isValidCell = true;
-                    }
-                    if (aux.getWest() != null &&
-                            aux.getWest().getState().getColor() == 'n') {
-                        if (westTraversal(aux, player)) isValidCell = true;
-                    }
-                    if (aux.getNortheast() != null && 
-                            aux.getNortheast().getState().getColor() == 'n') {
-                        if (northeastTraversal(aux, player)) isValidCell = true;
-                    }
-                    if (aux.getNorthwest() != null &&
-                            aux.getNorthwest().getState().getColor() == 'n') {
-                        if (northewestTraversal(aux, player)) isValidCell = true;
-                    }
-                    if (aux.getSoutheast() != null &&
-                            aux.getSoutheast().getState().getColor() == 'n') {
-                        if (southeastTraversal(aux, player)) isValidCell = true;
-                    }
-                    if (aux.getSouthwest() != null && 
-                            aux.getSouthwest().getState().getColor() == 'n') {
-                        if (southwestTraversal(aux, player)) isValidCell = true;
-                    }
-
-                    /* Si hay al menos una direción que termine en jugada válida,
-                    la casilla actual pasa a ser una casilla válida para colocar ficha*/
-                    if (isValidCell) {
-                        auxNode = list.getHead();
-                        while (auxNode != null && auxNode.isUsed()) {
-                            auxNode = auxNode.getNext();
-                        }
-                        if (auxNode != null) {
-                            aux.getState().setColor(auxNode.getCharacter());
-                            auxNode.setIsUsed(true);
-                        }
-                    }
+                if (aux.getNorth() != null &&
+                    aux.getNorth().getToken().getState() == enemyColor &&
+                    northTraversal(aux, myColor, enemyColor)) {
+                    isValidCell = true;
                 }
-                aux = aux.getEast();
 
-                
-                if (aux == null) {
-                    first = first.getSouth();
-                    aux = first;
+                if (aux.getSouth() != null &&
+                    aux.getSouth().getToken().getState() == enemyColor &&
+                    southTraversal(aux, myColor, enemyColor)) {
+                    isValidCell = true;
                 }
-            } 
-            list.reboot();
-            
-        } else { // Turno negro
-            while (aux != null) {
-                
-                // Primero ocupamos ubicarnos en una casilla vacía
-                if (aux.getState().getColor() == 'v') {
-                    boolean isValidCell = false;
 
-                    // Buscamos una ficha enemiga adyacente a la casilla vacía
-                    if (aux.getNorth() != null &&
-                            aux.getNorth().getState().getColor() == 'b') {
-                        if (northTraversal(aux, player)) isValidCell = true;
-                    } 
-                    if (aux.getSouth() != null &&
-                            aux.getSouth().getState().getColor() == 'b') {
-                        if (southTraversal(aux, player)) isValidCell = true;
-                    }
-                    if (aux.getEast() != null && 
-                            aux.getEast().getState().getColor() == 'b') {
-                        if (eastTraversal(aux, player)) isValidCell = true;
-                    }
-                    if (aux.getWest() != null &&
-                            aux.getWest().getState().getColor() == 'b') {
-                        if (westTraversal(aux, player)) isValidCell = true;
-                    }
-                    if (aux.getNortheast() != null && 
-                            aux.getNortheast().getState().getColor() == 'b') {
-                        if (northeastTraversal(aux, player)) isValidCell = true;
-                    }
-                    if (aux.getNorthwest() != null &&
-                            aux.getNorthwest().getState().getColor() == 'b') {
-                        if (northewestTraversal(aux, player)) isValidCell = true;
-                    }
-                    if (aux.getSoutheast() != null &&
-                            aux.getSoutheast().getState().getColor() == 'b') {
-                        if (southeastTraversal(aux, player)) isValidCell = true;
-                    }
-                    if (aux.getSouthwest() != null && 
-                            aux.getSouthwest().getState().getColor() == 'b') {
-                        if (southwestTraversal(aux, player)) isValidCell = true;
-                    }
-                    
-                    /* Si hay al menos una direción que termine en jugada válida,
-                    la casilla actual pasa a ser una casilla válida para colocar ficha*/
-                    if (isValidCell) {
-                        auxNode = list.getHead();
-                        while (auxNode != null && auxNode.isUsed()) {
-                            auxNode = auxNode.getNext();
-                        }
-                        if (auxNode != null) {
-                            aux.getState().setColor(auxNode.getCharacter());
-                            auxNode.setIsUsed(true);
-                        }
-                    }
+                if (aux.getEast() != null &&
+                    aux.getEast().getToken().getState() == enemyColor &&
+                    eastTraversal(aux, myColor, enemyColor)) {
+                    isValidCell = true;
                 }
-                aux = aux.getEast();
 
-                if (aux == null) {
-                    first = first.getSouth();
-                    aux = first;
+                if (aux.getWest() != null &&
+                    aux.getWest().getToken().getState() == enemyColor &&
+                    westTraversal(aux, myColor, enemyColor)) {
+                    isValidCell = true;
+                }
+
+                if (aux.getNortheast() != null &&
+                    aux.getNortheast().getToken().getState() == enemyColor &&
+                    northeastTraversal(aux, myColor, enemyColor)) {
+                    isValidCell = true;
+                }
+
+                if (aux.getNorthwest() != null &&
+                    aux.getNorthwest().getToken().getState() == enemyColor &&
+                    northwestTraversal(aux, myColor, enemyColor)) {
+                    isValidCell = true;
+                }
+
+                if (aux.getSoutheast() != null &&
+                    aux.getSoutheast().getToken().getState() == enemyColor &&
+                    southeastTraversal(aux, myColor, enemyColor)) {
+                    isValidCell = true;
+                }
+
+                if (aux.getSouthwest() != null &&
+                    aux.getSouthwest().getToken().getState() == enemyColor &&
+                    southwestTraversal(aux, myColor, enemyColor)) {
+                    isValidCell = true;
+                }
+
+                // Si al menos en una dirección hay jugada válida, marca esa celda con un caracter
+                if (isValidCell) {
+                    auxNode = list.getHead();
+                    while (auxNode != null && auxNode.isUsed()) {
+                        auxNode = auxNode.getNext();
+                    }
+                    if (auxNode != null) {
+                        aux.getToken().setState(auxNode.getCharacter());
+                        auxNode.setIsUsed(true);
+                    }
                 }
             }
-            list.reboot();
+
+            aux = aux.getEast();
+            if (aux == null) {
+                first = first.getSouth();
+                aux = first;
+            }
         }
+
+        list.reboot();
     }
     
+    public void showBoard() {
+    Node first = aa;
+    Node aux = first;
+
+    while (first != null) {
+        aux = first;
+
+        while (aux != null) {
+            System.out.print(aux.getToken().getState() + " ");
+            aux = aux.getEast();
+        }
+
+        System.out.println(); // salto de línea al final de la fila
+        first = first.getSouth();
+    }
+    }
+    
+    
+    public void encloseDetector(Player player, Node node) {
+
+        char myColor = ' ';
+        char enemyColor = ' ';
+
+        // Determina el color de las fichas del jugador actual
+        if (player.getColor().getState() == 'n') {
+            myColor = 'n';
+            enemyColor = 'b';
+        } else if (player.getColor().getState() == 'b') {
+            myColor = 'b';
+            enemyColor = 'n';
+        }
+
+        boolean isNorthEnclose = false;
+        boolean isSouthEnclose = false;
+        boolean isEastEnclose = false;
+        boolean isWestEnclose = false;
+        boolean isNortheastEnclose = false;
+        boolean isNorthwestEnclose = false;
+        boolean isSoutheastEnclose = false;
+        boolean isSouthwestEnclose = false;
+
+        /* Pregunta hacia una dirección en específico si no es un borde, si es una ficha 
+        enemiga y si termina encierro (Para todas las direcciones)*/
+        
+        if (node.getNorth() != null &&
+            node.getNorth().getToken().getState() == enemyColor &&
+            northTraversal(node, myColor, enemyColor)) {
+            isNorthEnclose = true;
+        }
+
+        if (node.getSouth() != null &&
+            node.getSouth().getToken().getState() == enemyColor &&
+            southTraversal(node, myColor, enemyColor)) {
+            isSouthEnclose = true;
+        }
+
+        if (node.getEast() != null &&
+            node.getEast().getToken().getState() == enemyColor &&
+            eastTraversal(node, myColor, enemyColor)) {
+            isEastEnclose = true;
+        }
+
+        if (node.getWest() != null &&
+            node.getWest().getToken().getState() == enemyColor &&
+            westTraversal(node, myColor, enemyColor)) {
+            isWestEnclose = true;
+        }
+
+        if (node.getNortheast() != null &&
+            node.getNortheast().getToken().getState() == enemyColor &&
+            northeastTraversal(node, myColor, enemyColor)) {
+            isNortheastEnclose = true;
+        }
+
+        if (node.getNorthwest() != null &&
+            node.getNorthwest().getToken().getState() == enemyColor &&
+            northwestTraversal(node, myColor, enemyColor)) {
+            isNorthwestEnclose = true;
+        }
+
+        if (node.getSoutheast() != null &&
+            node.getSoutheast().getToken().getState() == enemyColor &&
+            southeastTraversal(node, myColor, enemyColor)) {
+            isSoutheastEnclose = true;
+        }
+
+        if (node.getSouthwest() != null &&
+            node.getSouthwest().getToken().getState() == enemyColor &&
+            southwestTraversal(node, myColor, enemyColor)) {
+            isSouthwestEnclose = true;
+        }
+
+        // Llama a la función encargada de voltear las fichas que están dentro de un encierro
+        flipTokens(
+            isNorthEnclose, isSouthEnclose, isEastEnclose, isWestEnclose,
+            isNortheastEnclose, isNorthwestEnclose,
+            isSoutheastEnclose, isSouthwestEnclose,
+            node, myColor, enemyColor
+        );
+    }
+    
+    public void flipTokens(boolean north, boolean south, boolean east,
+        boolean west, boolean northeast, boolean northwest,
+        boolean southeast, boolean southwest,
+        Node node, char myColor, char enemyColor) {
+
+        Node aux;
+
+        if (north) {
+            aux = node.getNorth();
+            while (aux.getToken().getState() == enemyColor) {
+                aux.getToken().setState(myColor);
+                aux = aux.getNorth();
+            }
+        }
+
+        if (south) {
+            aux = node.getSouth();
+            while (aux.getToken().getState() == enemyColor) {
+                aux.getToken().setState(myColor);
+                aux = aux.getSouth();
+            }
+        }
+
+        if (east) {
+            aux = node.getEast();
+            while (aux.getToken().getState() == enemyColor) {
+                aux.getToken().setState(myColor);
+                aux = aux.getEast();
+            }
+        }
+
+        if (west) {
+            aux = node.getWest();
+            while (aux.getToken().getState() == enemyColor) {
+                aux.getToken().setState(myColor);
+                aux = aux.getWest();
+            }
+        }
+
+        if (northeast) {
+            aux = node.getNortheast();
+            while (aux.getToken().getState() == enemyColor) {
+                aux.getToken().setState(myColor);
+                aux = aux.getNortheast();
+            }
+        }
+
+        if (northwest) {
+            aux = node.getNorthwest();
+            while (aux.getToken().getState() == enemyColor) {
+                aux.getToken().setState(myColor);
+                aux = aux.getNorthwest();
+            }
+        }
+
+        if (southeast) {
+            aux = node.getSoutheast();
+            while (aux.getToken().getState() == enemyColor) {
+                aux.getToken().setState(myColor);
+                aux = aux.getSoutheast();
+            }
+        }
+
+        if (southwest) {
+            aux = node.getSouthwest();
+            while (aux.getToken().getState() == enemyColor) {
+                aux.getToken().setState(myColor);
+                aux = aux.getSouthwest();
+            }
+        }
+    }
+
+    
+    // Busca la casilla con el carácter ingresado por el usuario y la pinta del color del jugador
+    public Node searchNodeByChar(char c) {
+        Node currentRow = aa; 
+
+        while (currentRow != null) {
+            Node aux = currentRow;
+            while (aux != null) {
+                if (aux.getToken().getState() == c) {
+                    return aux;
+                }
+                aux = aux.getEast();
+            }
+            currentRow = currentRow.getSouth();
+        }
+        return null;
+    }
+    
+    // Inserta una ficha en el tablero
+    public void putToken(Node node, Player player) {
+        if (node == null) System.out.println("Posicion invalida");
+        
+        node.getToken().setState(player.getColor().getState());
+        
+        // Una vez insertada la ficha, se procede a voltera las que quedaron en encierro
+        encloseDetector(player, node);
+    }
+    
+    
+
+    public void cleanBoard() {
+        Node first = aa;
+        Node aux = first;
+        
+        while (aux != null) {
+            if (aux.getToken().getState() != 'n' && aux.getToken().getState() != 'b') {
+                aux.getToken().setState('v');
+            }
+            
+            aux = aux.getEast();
+            if (aux == null) {
+                first = first.getSouth();
+                aux = first;
+            }
+        }
+    }
     
 }

@@ -9,26 +9,26 @@ package Clases;
  * @author Axton Urbina
  */
 public class Token {
-    private char color; //v = vacío, n = negro, b = blanco
+    private char state; //v = vacío, n = negro, b = blanco
     
     //Contructor
-    public Token(char color) {
-        this.color = color;
+    public Token(char state) {
+        this.state = state;
     }
     
     //Setters y Getters
-    public char getColor() {
-        return color;
+    public char getState() {
+        return state;
     }
 
-    public void setColor(char color) {
-        this.color = color;
+    public void setState(char color) {
+        this.state = color;
     }
      
     //  ToString
     @Override
     public String toString() {
-        return "Token{" + "color=" + color + '}';
+        return "Token{" + "state=" + state + '}';
     }
     
     
