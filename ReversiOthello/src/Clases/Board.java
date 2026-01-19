@@ -18,12 +18,33 @@ public class Board {
                  ga, gb, gc, gd, ge, gf, gg, gh,
                  ha, hb, hc, hd, he, hf, hg, hh;  
   
+    int nQuantity, bQuantity;
 
     public Board() {
         boardInitializer();
         setDirections();
+        this.nQuantity = 0;
+        this.bQuantity = 0;
     }
 
+    public int getnQuantity() {
+        return nQuantity;
+    }
+
+    public void setnQuantity(int nQuantity) {
+        this.nQuantity = nQuantity;
+    }
+
+    public int getbQuantity() {
+        return bQuantity;
+    }
+
+    public void setbQuantity(int bQuantity) {
+        this.bQuantity = bQuantity;
+    }
+
+    
+    
     public Node getFirst() {
         return aa;
     }    
@@ -31,77 +52,77 @@ public class Board {
     // Se inicializan los nodos con todas sus direcciones en nulo
     public void boardInitializer() {
     
-        aa = new Node('v');
-        ab = new Node('v');
-        ac = new Node('v'); 
-        ad = new Node('v'); 
-        ae = new Node('v');
-        af = new Node('v');
-        ag = new Node('v');
-        ah = new Node('v');
+        aa = new Node('_');
+        ab = new Node('_');
+        ac = new Node('_'); 
+        ad = new Node('_'); 
+        ae = new Node('_');
+        af = new Node('_');
+        ag = new Node('_');
+        ah = new Node('_');
         
-        ba = new Node('v');
-        bb = new Node('v');
-        bc = new Node('v');
-        bd = new Node('v');
-        be = new Node('v');
-        bf = new Node('v');
-        bg = new Node('v');
-        bh = new Node('v');
+        ba = new Node('_');
+        bb = new Node('_');
+        bc = new Node('_');
+        bd = new Node('_');
+        be = new Node('_');
+        bf = new Node('_');
+        bg = new Node('_');
+        bh = new Node('_');
         
-        ca = new Node('v');
-        cb = new Node('v');
-        cc = new Node('v');
-        cd = new Node('v');
-        ce = new Node('v');
-        cf = new Node('v');
-        cg = new Node('v');
-        ch = new Node('v');
+        ca = new Node('_');
+        cb = new Node('_');
+        cc = new Node('_');
+        cd = new Node('_');
+        ce = new Node('_');
+        cf = new Node('_');
+        cg = new Node('_');
+        ch = new Node('_');
         
-        da = new Node('v');
-        db = new Node('v');
-        dc = new Node('v');
-        dd = new Node('b');
-        de = new Node('n');
-        df = new Node('v');
-        dg = new Node('v');
-        dh = new Node('v');
+        da = new Node('_');
+        db = new Node('_');
+        dc = new Node('_');
+        dd = new Node('B');
+        de = new Node('N');
+        df = new Node('_');
+        dg = new Node('_');
+        dh = new Node('_');
         
-        ea = new Node('v');
-        eb = new Node('v');
-        ec = new Node('v');
-        ed = new Node('n');
-        ee = new Node('b');
-        ef = new Node('v');
-        eg = new Node('v');
-        eh = new Node('v');
+        ea = new Node('_');
+        eb = new Node('_');
+        ec = new Node('_');
+        ed = new Node('N');
+        ee = new Node('B');
+        ef = new Node('_');
+        eg = new Node('_');
+        eh = new Node('_');
         
-        fa = new Node('v');
-        fb = new Node('v');
-        fc = new Node('v');
-        fd = new Node('v');
-        fe = new Node('v');
-        ff = new Node('v');
-        fg = new Node('v');
-        fh = new Node('v');
+        fa = new Node('_');
+        fb = new Node('_');
+        fc = new Node('_');
+        fd = new Node('_');
+        fe = new Node('_');
+        ff = new Node('_');
+        fg = new Node('_');
+        fh = new Node('_');
         
-        ga = new Node('v');
-        gb = new Node('v');
-        gc = new Node('v');
-        gd = new Node('v');
-        ge = new Node('v');
-        gf = new Node('v');
-        gg = new Node('v');
-        gh = new Node('v');
+        ga = new Node('_');
+        gb = new Node('_');
+        gc = new Node('_');
+        gd = new Node('_');
+        ge = new Node('_');
+        gf = new Node('_');
+        gg = new Node('_');
+        gh = new Node('_');
         
-        ha = new Node('v');
-        hb = new Node('v');
-        hc = new Node('v');
-        hd = new Node('v');
-        he = new Node('v');
-        hf = new Node('v');
-        hg = new Node('v');
-        hh = new Node('v');
+        ha = new Node('_');
+        hb = new Node('_');
+        hc = new Node('_');
+        hd = new Node('_');
+        he = new Node('_');
+        hf = new Node('_');
+        hg = new Node('_');
+        hh = new Node('_');
     }
     
     // Establece manualmente (a pata) las direcciones de cada uno de los nodos
@@ -599,6 +620,23 @@ public class Board {
         gg.setSoutheast(hh);
     }
     
+    public void tokenCounter(){ 
+ 
+        Node first = aa;
+        while (first != null) {
+            Node aux = first; 
+            while (aux != null) {
+               if(aux.getToken().getState()== 'N'){
+                nQuantity++;
+               }else if(aux.getToken().getState()== 'B'){
+                bQuantity++;  
+            }
+                aux = aux.getEast(); 
+            }
+            first = first.getSouth(); 
+        }
+     }
+    
     /* Los siguientes métodos booleanos retornan verdadero si hay una jugada válida
     o encierro (para cada una de las direcciones)*/
     public boolean eastTraversal(Node node, char myColor, char enemyColor) {
@@ -791,8 +829,6 @@ public class Board {
                 aux = first;
             }
         }
-
-        list.reboot();
     }
     
     public void showBoard() {
