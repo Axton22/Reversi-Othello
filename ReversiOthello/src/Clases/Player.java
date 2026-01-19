@@ -4,6 +4,8 @@
  */
 package Clases;
 
+import java.util.Scanner;
+
 /**
  *
  * @author Axton Urbina
@@ -12,9 +14,13 @@ public class Player {
     private String name; 
     private boolean turn; // True = turno blanco, False = turno negro
     private char state; // Jugando, perdió, ganó o empató
+    private Token color;
     
-    public Player() {
-        
+    public Player(String name, char color) {
+        this.name = name;
+        this.turn = false;
+        this.state = 'j';
+        this.color = new Token(color);
     }
 
     public boolean isTurn() {
@@ -40,7 +46,21 @@ public class Player {
     public void setName(String name) {
         this.name = name;
     }
+
+    public Token getColor() {
+        return color;
+    }
+
+    public void setColor(Token color) {
+        this.color = color;
+    }
     
     
+    public char askMove() {
+        Scanner teclado = new Scanner(System.in);
+        System.out.print("\n" + name + " (" + color + "), ingrese carácter donde desea colocar la ficha: ");
+        String entrada = teclado.next(); 
+        return entrada.toLowerCase().charAt(0); // se pasa a minúscula por seguridad
+    }
     
 }

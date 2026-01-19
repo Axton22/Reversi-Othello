@@ -18,10 +18,10 @@ public class Node {
     private Node southeast;
     private Node southwest;
     
-    private Token state; // Estado de la casilla en el tablero: sin ficha, con ficha balnca o con ficha negra
+    private Token token; // Ocupación de la casilla en el tablero: ocupada (con ficha) o desocupada (sin ficha)
 
     // Constructor que cuando se llama inicializa todo en nulo
-    public Node(char state) {
+    public Node(char token) {
         this.north = null;
         this.east = null;
         this.south = null;
@@ -30,7 +30,7 @@ public class Node {
         this.northwest = null;
         this.southeast = null;
         this.southwest = null;
-        this.state = new Token(state);
+        this.token = new Token(token);
     }
     
     // Setters y Getters
@@ -98,18 +98,18 @@ public class Node {
         this.southwest = southwest;
     }
 
-    public Token getState() {
-        return state;
+    public Token getToken() {
+        return token;
     }
 
-    public void setState(Token state) {
-        this.state = state;
+    public void setToken(Token state) {
+        this.token = state;
     }
 
     // ToString
     @Override
     public String toString() {
-        return "Node{" + "north=" + north + ", south=" + south + ", east=" + east + ", west=" + west + ", northeast=" + northeast + ", northwest=" + northwest + ", southeast=" + southeast + ", southwest=" + southwest + ", state=" + state + '}';
+        return "Node{" + "north=" + north + ", south=" + south + ", east=" + east + ", west=" + west + ", northeast=" + northeast + ", northwest=" + northwest + ", southeast=" + southeast + ", southwest=" + southwest + ", state=" + token + '}';
     }
     
 }
