@@ -12,12 +12,175 @@ public class Game {
     private Board board;
     private Player player1;
     private Player player2;
+    private Player currentPlayer;
+    private CharacterList charList;
     
     public Game(Board board, Player player1, Player player2) {
         this.board = board;
         this.player1 = player1;
         this.player2 = player2;
+        this.currentPlayer = player1;
+        this.charList = new CharacterList();
+        charList.insertCharacters();
     }
+    
+    // Verifica que haya movimientos disponibles en el tablero (caracteres diferentes a '_', 'N' y 'B')
+    public boolean movementsAvailable(Player player) {
+        Node currentRow = board.getFirst();
+        while (currentRow != null) {
+            Node aux = currentRow;
+            while (aux != null) {
+                char c = aux.getToken().getState();
+
+                if (c != '_' && c != 'N' && c != 'B') {
+                    return true; 
+                }
+                aux = aux.getEast();
+            }
+            currentRow = currentRow.getSouth();
+        }
+        return false; 
+    } 
+    
+    // Se encarga de limpiar los caracteres que representan movimientos válidos en el tablero
+    public void cleanLabels() {
+        Node currentRow = board.getFirst(); 
+        while (currentRow != null) {
+            Node aux = currentRow;
+            while (aux != null) {
+                char content = aux.getToken().getState();
+
+                // Si no es una ficha negra y no es una ficha blanca
+                if (content != 'N' && content != 'B') {
+                    // se cambia a que sea '_'  (vacio)
+                    aux.getToken().setState('_'); 
+                }
+                aux = aux.getEast();
+            }
+            currentRow = currentRow.getSouth();
+        }
+    }
+    
+    // Cambia el turno
+    public void changeTurn() {
+        if (currentPlayer == player1) {
+            player1.setTurn(false);
+            player2.setTurn(true);
+            currentPlayer = player2;
+        } else {
+            player2.setTurn(false);
+            player1.setTurn(true);
+            currentPlayer = player1;
+        }
+    }
+    
+    // Deterta el ganador
+    public Player winnerDetector(Player p1, Player p2) {
+        int score1 = 0;
+        int score2 = 0;
+        
+        // Obtenemos el color de ficha que está jugando cada jugador
+        char c1 = p1.getColor().getState();
+        char c2 = p2.getColor().getState();
+        
+        // El contador aumenta cada que se encuentre una ficha del jugador correspondiente
+        Node row = board.getFirst();
+        while (row != null) {
+            Node aux = row;
+            while (aux != null) {
+                char current = aux.getToken().getState();
+                if (current == c1) 
+                    score1++;
+                else if (current == c2) 
+                    score2++;
+
+                aux = aux.getEast();
+            }
+            row = row.getSouth();
+        }
+
+        System.out.println("\n--- MARCADOR FINAL ---");
+        System.out.println(p1.getName() + ": " + score1);
+        System.out.println(p2.getName() + ": " + score2);
+
+        if (score1 > score2) return p1;
+        if (score2 > score1) return p2;
+        return null; // Empate
+    }
+    
+    // Devuelve true si el juego acaba
+    public boolean isEndGame() {
+        // Juador 1
+        cleanLabels();
+        charList.reboot();
+        board.locateValidCell(player1, charList);
+        boolean p1MakeMove = movementsAvailable(player1);
+
+        // Jugador 2
+        cleanLabels();
+        charList.reboot();
+        board.locateValidCell(player2, charList);
+        boolean p2MakeMove = movementsAvailable(player2);
+
+        //  Dejamos el tablero limpio para el turno real
+        cleanLabels();
+        charList.reboot();
+
+        // El juego termina solo si AMBOS no pueden hacer más movimientos
+        if (p1MakeMove == false && p2MakeMove == false) {
+            return true;  
+        } else {
+            return false; 
+        }
+    }
+    
+    public void gameLoop() {
+
+        while (!isEndGame()) { 
+            // Limpiamos el tablero y la lista de caracteres al iniciar
+            charList.reboot();
+            cleanLabels();
+            
+            // Mostramos jugadas válidas para el jugador actual
+            board.locateValidCell(currentPlayer, charList);
+
+            // Si el tablero si se pintó con caracteres en las celdas que se pueden hacer jugadas
+            if (movementsAvailable(currentPlayer)) {
+                board.showBoard();
+
+                Node node = null;
+                 // Repetir hasta que el jugador seleccione una caracter válido
+                while (node == null) {
+                    char c = currentPlayer.askMove();
+                    node = board.searchNodeByChar(c);
+
+                    if (node == null) {
+                        System.out.println("❌ Movimiento inválido. Por favor, elige una de las letras numeradas en el tablero.");
+                    }
+                }
+                
+                //  Si ya se ingresó un caracter válido, se inserta la ficha en el tablero y se dan vuelta los encierros
+                board.putToken(node, currentPlayer); 
+                cleanLabels();
+
+            } else {
+                System.out.println("\n" + currentPlayer.getName() + " no tiene jugadas. Pasa turno.");
+            }
+            changeTurn();
+        }
+
+        // Salida del bucle = Fin real del juego
+        System.out.println("\n--- EL JUEGO HA TERMINADO ---");
+        board.showBoard(); // Mostramos cómo quedó el tablero al final
+        Player winner = winnerDetector(player1, player2);
+
+        if (winner != null) {
+            System.out.println("Ganador: " + winner.getName());
+        } else {
+            System.out.println("Es un empate.");
+        }
+    }
+    
     
 }
 

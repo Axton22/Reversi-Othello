@@ -6,7 +6,10 @@ package reversiothello;
 
 import Clases.Board;
 import Clases.CharacterList;
+import Clases.Game;
+import Clases.GamePc;
 import Clases.Player;
+import java.util.Scanner;
 
 /**
  *
@@ -18,25 +21,28 @@ public class ReversiOthello {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        CharacterList list = new CharacterList();
-        list.insertCharacters();
-        
-        Player player = new Player("Axton", 'n');
-        Player player2 = new Player("Moreno", 'b');
-        player2.setTurn(true);
-        
         Board board = new Board();
+        Scanner teclado = new Scanner(System.in);
+
+        System.out.println("--- BIENVENIDO AL OTHELLO ---");
+        System.out.println("1. Humano vs Humano");
+        System.out.println("2. Humano vs Computadora");
+        System.out.print("Seleccione modo: ");
         
-        board.locateValidCell(player, list);
-        board.showBoard();
+        int modeSelected = teclado.nextInt();
         
+        Player player1 = new Player("Jugador 1", 'N', true);
         
-        
-        board.putToken(board.searchNodeByChar(player.askMove()), player);
-        
-        board.cleanBoard();
-        board.locateValidCell(player2, list);
-        board.showBoard();
+        Player player2;
+        if (modeSelected == 2) {
+            player2 = new GamePc("CPU",'B',false);
+        } else {
+        player2 = new Player("Jugador 2", 'B',false);
+        }
+
+        Game partida = new Game(board, player1, player2);
+
+        partida.gameLoop();
 
     }
     

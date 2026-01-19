@@ -16,9 +16,9 @@ public class Player {
     private char state; // Jugando, perdió, ganó o empató
     private Token color;
     
-    public Player(String name, char color) {
+    public Player(String name, char color, boolean turn) {
         this.name = name;
-        this.turn = false;
+        this.turn = turn;
         this.state = 'j';
         this.color = new Token(color);
     }
