@@ -313,7 +313,7 @@ public class Game {
                     node = board.searchNodeByChar(c);
 
                     if (node == null) {
-                        System.out.println("Movimiento inválido. Por favor, elige una de las letras numeradas en el tablero.");
+                        System.out.println("Movimiento invalido. Por favor, elige una de las letras numeradas en el tablero.");
                     }
                 }
 

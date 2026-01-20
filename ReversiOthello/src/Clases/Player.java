@@ -130,7 +130,7 @@ public abstract class Player {
      */
     public char askMove(Board board) {
         Scanner teclado = new Scanner(System.in);
-        System.out.print("\n" + name + " (" + color + "), ingrese caracter donde desea colocar la ficha: ");
+        System.out.print("\n" + name + " (" + color.getState() + "), ingrese caracter donde desea colocar la ficha: ");
         String entrada = teclado.next();
         return entrada.toLowerCase().charAt(0); // se pasa a minúscula por seguridad
     }
