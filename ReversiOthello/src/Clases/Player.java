@@ -10,7 +10,7 @@ import java.util.Scanner;
  *
  * @author Axton Urbina
  */
-public class Player {
+public abstract class Player {
     private String name; 
     private boolean turn; // True = turno blanco, False = turno negro
     private char state; // Jugando, perdió, ganó o empató
@@ -57,7 +57,7 @@ public class Player {
     }
     
     
-    public char askMove() {
+    public char askMove(Board board) {
         Scanner teclado = new Scanner(System.in);
         System.out.print("\n" + name + " (" + color + "), ingrese carácter donde desea colocar la ficha: ");
         String entrada = teclado.next(); 

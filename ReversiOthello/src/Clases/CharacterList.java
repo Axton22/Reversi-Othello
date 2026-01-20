@@ -53,7 +53,28 @@ public class CharacterList {
         insert('2');
         insert('1');
     }
+     public int recorrerlista (){
+        CharacterNode aux = head;
+        int contador = 0;
+        while (aux != null) {
+            contador++;
+            aux = aux.getNext();
+        }
+        return contador;
+    }
+    public char obtenerFichaPorIndice(int indiceElegido) {
+    CharacterNode aux = head;
+    int actual = 0;
     
+    while (aux != null) {
+        if (actual == indiceElegido) {
+            return aux.getCharacter();
+        }
+        actual++;
+        aux = aux.getNext();
+    }
+    return ' '; // Por seguridad
+}
     public void reboot() {
         CharacterNode aux = head;
         while (aux != null) {

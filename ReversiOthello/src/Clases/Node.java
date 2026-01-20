@@ -17,7 +17,7 @@ public class Node {
     private Node northwest;
     private Node southeast;
     private Node southwest;
-    
+    Node next;
     private Token token; // Ocupación de la casilla en el tablero: ocupada (con ficha) o desocupada (sin ficha)
 
     // Constructor que cuando se llama inicializa todo en nulo
@@ -32,7 +32,13 @@ public class Node {
         this.southwest = null;
         this.token = new Token(token);
     }
-    
+    public Node getNext() {
+        return next;
+    }
+
+    public void setNext(Node next) {
+        this.next = next;
+    }
     // Setters y Getters
     public Node getNorth() {
         return north;
