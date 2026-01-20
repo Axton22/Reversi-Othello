@@ -996,4 +996,21 @@ public class Board {
         }
         return null;
     }
+    public void buscarTodasLasOpciones(CharacterList listaParaLlenar) {
+    Node filaActual = aa; 
+    
+    while (filaActual != null) {
+        Node aux = filaActual;
+        while (aux != null) {
+            char c = aux.getToken().getState();
+            if(c != 'N' && c != 'B' && c != '_') {
+
+                listaParaLlenar.insert(c); 
+  
+            }
+            aux = aux.getEast();
+        }
+        filaActual = filaActual.getSouth();
+    }
+}
 }

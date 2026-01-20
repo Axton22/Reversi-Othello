@@ -234,7 +234,7 @@ public class Game {
                 Node node = null;
                  // Repetir hasta que el jugador seleccione una caracter válido
                 while (node == null) {
-                    char c = currentPlayer.askMove();
+                    char c = currentPlayer.askMove(board);
                     node = board.searchNodeByChar(c);
 
                     if (node == null) {

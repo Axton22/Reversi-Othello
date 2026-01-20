@@ -31,13 +31,13 @@ public class ReversiOthello {
         
         int modeSelected = teclado.nextInt();
         
-        Player player1 = new Player("Jugador 1", 'N', true);
+        Player player1 = new Player("Jugador 1", 'N', true) {};
         
         Player player2;
         if (modeSelected == 2) {
             player2 = new GamePc("CPU",'B',false);
         } else {
-        player2 = new Player("Jugador 2", 'B',false);
+        player2 = new Player("Jugador 2", 'B',false) {};
         }
 
         Game partida = new Game(board, player1, player2);
