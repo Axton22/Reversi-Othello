@@ -134,6 +134,89 @@ public class Game {
         }
     }
     
+    // Inserta una ficha en el tablero
+    public void putToken(Node node, Player player, Game game) {
+        if (node == null) System.out.println("Posicion invalida");
+        
+        node.getToken().setState(player.getColor().getState());
+        
+        // Una vez insertada la ficha, se procede a voltera las que quedaron en encierro
+        board.encloseDetector(player, node, game);
+    }
+    
+    // Recibe el nodo, color del jugador actual y color enemigo y voltea la ficha de ese nodo si la condición es true
+    public void flipTokens(boolean north, boolean south, boolean east,
+        boolean west, boolean northeast, boolean northwest,
+        boolean southeast, boolean southwest,
+        Node node, char myColor, char enemyColor) {
+
+        Node aux;
+
+        if (north) {
+            aux = node.getNorth();
+            while (aux.getToken().getState() == enemyColor) {
+                aux.getToken().setState(myColor);
+                aux = aux.getNorth();
+            }
+        }
+
+        if (south) {
+            aux = node.getSouth();
+            while (aux.getToken().getState() == enemyColor) {
+                aux.getToken().setState(myColor);
+                aux = aux.getSouth();
+            }
+        }
+
+        if (east) {
+            aux = node.getEast();
+            while (aux.getToken().getState() == enemyColor) {
+                aux.getToken().setState(myColor);
+                aux = aux.getEast();
+            }
+        }
+
+        if (west) {
+            aux = node.getWest();
+            while (aux.getToken().getState() == enemyColor) {
+                aux.getToken().setState(myColor);
+                aux = aux.getWest();
+            }
+        }
+
+        if (northeast) {
+            aux = node.getNortheast();
+            while (aux.getToken().getState() == enemyColor) {
+                aux.getToken().setState(myColor);
+                aux = aux.getNortheast();
+            }
+        }
+
+        if (northwest) {
+            aux = node.getNorthwest();
+            while (aux.getToken().getState() == enemyColor) {
+                aux.getToken().setState(myColor);
+                aux = aux.getNorthwest();
+            }
+        }
+
+        if (southeast) {
+            aux = node.getSoutheast();
+            while (aux.getToken().getState() == enemyColor) {
+                aux.getToken().setState(myColor);
+                aux = aux.getSoutheast();
+            }
+        }
+
+        if (southwest) {
+            aux = node.getSouthwest();
+            while (aux.getToken().getState() == enemyColor) {
+                aux.getToken().setState(myColor);
+                aux = aux.getSouthwest();
+            }
+        }
+    }
+    
     public void gameLoop() {
 
         while (!isEndGame()) { 
@@ -160,7 +243,7 @@ public class Game {
                 }
                 
                 //  Si ya se ingresó un caracter válido, se inserta la ficha en el tablero y se dan vuelta los encierros
-                board.putToken(node, currentPlayer); 
+                putToken(node, currentPlayer, this); 
                 cleanLabels();
 
             } else {

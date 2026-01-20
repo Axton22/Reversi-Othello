@@ -1,12 +1,25 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package Clases;
 
 /**
+ * Represents the game board for Reversi (Othello).
+ * <p>
+ * The board is implemented as an 8x8 grid of {@link Node} objects, where each
+ * node maintains references to its eight possible neighbors
+ * (north, south, east, west, and diagonals).
+ * </p>
+ * <p>
+ * This class is responsible for:
+ * <ul>
+ *   <li>Initializing the board structure</li>
+ *   <li>Linking nodes in all directions</li>
+ *   <li>Detecting valid moves</li>
+ *   <li>Detecting enclosures (flips)</li>
+ *   <li>Displaying the board</li>
+ * </ul>
+ * </p>
  *
- * @author Axton Urbina
+ * @author Axton Urbina and Daniel Moreno
  */
 public class Board {
     private Node aa, ab, ac, ad, ae, af, ag, ah,
@@ -18,37 +31,28 @@ public class Board {
                  ga, gb, gc, gd, ge, gf, gg, gh,
                  ha, hb, hc, hd, he, hf, hg, hh;  
   
-    int nQuantity, bQuantity;
-
+    /**
+     * Constructs a new Board.
+     * Initializes all nodes and sets their directional connections.
+     */
     public Board() {
         boardInitializer();
         setDirections();
-        this.nQuantity = 0;
-        this.bQuantity = 0;
     }
-
-    public int getnQuantity() {
-        return nQuantity;
-    }
-
-    public void setnQuantity(int nQuantity) {
-        this.nQuantity = nQuantity;
-    }
-
-    public int getbQuantity() {
-        return bQuantity;
-    }
-
-    public void setbQuantity(int bQuantity) {
-        this.bQuantity = bQuantity;
-    }
-
-    
-    
+       
+    /**
+     * Returns the first node of the board (top-left corner).
+     *
+     * @return the first node of the board
+     */
     public Node getFirst() {
         return aa;
     }    
     
+    /**
+     * Initializes all nodes of the board with their default token state.
+     * All directional references are initially set to {@code null}.
+     */
     // Se inicializan los nodos con todas sus direcciones en nulo
     public void boardInitializer() {
     
@@ -125,6 +129,10 @@ public class Board {
         hh = new Node('_');
     }
     
+    /**
+     * Manually sets all directional references for each node on the board.
+     * This method establishes the complete 8-directional connectivity.
+     */
     // Establece manualmente (a pata) las direcciones de cada uno de los nodos
     public void setDirections() {
         // Conexiones de las esquinas
@@ -620,22 +628,14 @@ public class Board {
         gg.setSoutheast(hh);
     }
     
-    public void tokenCounter(){ 
- 
-        Node first = aa;
-        while (first != null) {
-            Node aux = first; 
-            while (aux != null) {
-               if(aux.getToken().getState()== 'N'){
-                nQuantity++;
-               }else if(aux.getToken().getState()== 'B'){
-                bQuantity++;  
-            }
-                aux = aux.getEast(); 
-            }
-            first = first.getSouth(); 
-        }
-     }
+    /**
+     * Traverses eastward from a given node to determine if a valid enclosure exists.
+     *
+     * @param node the starting node
+     * @param myColor the current player's token color
+     * @param enemyColor the opponent's token color
+     * @return {@code true} if a valid enclosure is found, {@code false} otherwise
+     */
     
     /* Los siguientes métodos booleanos retornan verdadero si hay una jugada válida
     o encierro (para cada una de las direcciones)*/
@@ -651,6 +651,9 @@ public class Board {
                aux.getEast().getToken().getState() == myColor;
     }
     
+    /**
+     * Traverses westward from a given node to determine if a valid enclosure exists.
+     */
     public boolean westTraversal(Node node, char myColor, char enemyColor) {
         Node aux = node;
 
@@ -663,6 +666,9 @@ public class Board {
                aux.getWest().getToken().getState() == myColor;
     }
     
+    /**
+     * Traverses northward from a given node to determine if a valid enclosure exists.
+     */
     public boolean northTraversal(Node node, char myColor, char enemyColor) {
         Node aux = node;
 
@@ -675,6 +681,9 @@ public class Board {
                aux.getNorth().getToken().getState() == myColor;
     }
     
+    /**
+     * Traverses southward from a given node to determine if a valid enclosure exists.
+     */
     public boolean southTraversal(Node node, char myColor, char enemyColor) {
         Node aux = node;
 
@@ -687,6 +696,9 @@ public class Board {
                aux.getSouth().getToken().getState() == myColor;
     }
     
+    /**
+     * Traverses northeast from a given node to determine if a valid enclosure exists.
+     */
     public boolean northeastTraversal(Node node, char myColor, char enemyColor) {
         Node aux = node;
 
@@ -698,7 +710,10 @@ public class Board {
         return aux.getNortheast() != null &&
                aux.getNortheast().getToken().getState() == myColor;
     }
-    
+      
+    /**
+     * Traverses northwest from a given node to determine if a valid enclosure exists.
+     */
     public boolean northwestTraversal(Node node, char myColor, char enemyColor) {
         Node aux = node;
 
@@ -711,6 +726,9 @@ public class Board {
                aux.getNorthwest().getToken().getState() == myColor;
     }
     
+    /**
+     * Traverses southeast from a given node to determine if a valid enclosure exists.
+     */
     public boolean southeastTraversal(Node node, char myColor, char enemyColor) {
         Node aux = node;
 
@@ -723,6 +741,9 @@ public class Board {
                aux.getSoutheast().getToken().getState() == myColor;
     }
     
+    /**
+     * Traverses southwest from a given node to determine if a valid enclosure exists.
+     */
     public boolean southwestTraversal(Node node, char myColor, char enemyColor) {
         Node aux = node;
 
@@ -734,6 +755,15 @@ public class Board {
         return aux.getSouthwest() != null &&
                aux.getSouthwest().getToken().getState() == myColor;
     }
+    
+    
+    /**
+     * Locates all valid cells for the current player's move and marks them
+     * using available characters from the given list.
+     *
+     * @param player the current player
+     * @param list list of available characters to mark valid cells
+     */
     
     // Localiza celdas (Nodos) válidos para una jugada y los marca con un carácter
     public void locateValidCell(Player player, CharacterList list) {
@@ -748,7 +778,7 @@ public class Board {
         if (player.getColor().getState() == 'N') {
             myColor = 'N';
             enemyColor = 'B';
-        } else if(player.getColor().getState() == 'N') { 
+        } else if(player.getColor().getState() == 'B') { 
             myColor = 'B';
             enemyColor = 'N';
         }
@@ -831,6 +861,9 @@ public class Board {
         }
     }
     
+    /**
+     * Prints the current state of the board row by row to the console.
+     */
     public void showBoard() {
         Node first = aa;
         Node aux = first;
@@ -849,7 +882,14 @@ public class Board {
     }
     
     
-    public void encloseDetector(Player player, Node node) {
+    /**
+     * Detects enclosures caused by a move and triggers token flipping.
+     *
+     * @param player the current player
+     * @param node the node where the move was made
+     * @param game the game instance handling token flipping
+     */
+    public void encloseDetector(Player player, Node node, Game game) {
 
         char myColor = ' ';
         char enemyColor = ' ';
@@ -924,7 +964,7 @@ public class Board {
         }
 
         // Llama a la función encargada de voltear las fichas que están dentro de un encierro
-        flipTokens(
+        game.flipTokens(
             isNorthEnclose, isSouthEnclose, isEastEnclose, isWestEnclose,
             isNortheastEnclose, isNorthwestEnclose,
             isSoutheastEnclose, isSouthwestEnclose,
@@ -932,78 +972,13 @@ public class Board {
         );
     }
     
-    public void flipTokens(boolean north, boolean south, boolean east,
-        boolean west, boolean northeast, boolean northwest,
-        boolean southeast, boolean southwest,
-        Node node, char myColor, char enemyColor) {
-
-        Node aux;
-
-        if (north) {
-            aux = node.getNorth();
-            while (aux.getToken().getState() == enemyColor) {
-                aux.getToken().setState(myColor);
-                aux = aux.getNorth();
-            }
-        }
-
-        if (south) {
-            aux = node.getSouth();
-            while (aux.getToken().getState() == enemyColor) {
-                aux.getToken().setState(myColor);
-                aux = aux.getSouth();
-            }
-        }
-
-        if (east) {
-            aux = node.getEast();
-            while (aux.getToken().getState() == enemyColor) {
-                aux.getToken().setState(myColor);
-                aux = aux.getEast();
-            }
-        }
-
-        if (west) {
-            aux = node.getWest();
-            while (aux.getToken().getState() == enemyColor) {
-                aux.getToken().setState(myColor);
-                aux = aux.getWest();
-            }
-        }
-
-        if (northeast) {
-            aux = node.getNortheast();
-            while (aux.getToken().getState() == enemyColor) {
-                aux.getToken().setState(myColor);
-                aux = aux.getNortheast();
-            }
-        }
-
-        if (northwest) {
-            aux = node.getNorthwest();
-            while (aux.getToken().getState() == enemyColor) {
-                aux.getToken().setState(myColor);
-                aux = aux.getNorthwest();
-            }
-        }
-
-        if (southeast) {
-            aux = node.getSoutheast();
-            while (aux.getToken().getState() == enemyColor) {
-                aux.getToken().setState(myColor);
-                aux = aux.getSoutheast();
-            }
-        }
-
-        if (southwest) {
-            aux = node.getSouthwest();
-            while (aux.getToken().getState() == enemyColor) {
-                aux.getToken().setState(myColor);
-                aux = aux.getSouthwest();
-            }
-        }
-    }
-
+    
+    /**
+     * Searches the board for a node containing the specified character.
+     *
+     * @param c the character to search for
+     * @return the node containing the character, or {@code null} if not found
+     */
     
     // Busca la casilla con el carácter ingresado por el usuario y la pinta del color del jugador
     public Node searchNodeByChar(char c) {
@@ -1021,16 +996,4 @@ public class Board {
         }
         return null;
     }
-    
-    // Inserta una ficha en el tablero
-    public void putToken(Node node, Player player) {
-        if (node == null) System.out.println("Posicion invalida");
-        
-        node.getToken().setState(player.getColor().getState());
-        
-        // Una vez insertada la ficha, se procede a voltera las que quedaron en encierro
-        encloseDetector(player, node);
-    }
-
-    
 }

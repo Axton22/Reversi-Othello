@@ -15,6 +15,7 @@ public class Player {
     private boolean turn; // True = turno blanco, False = turno negro
     private char state; // Jugando, perdió, ganó o empató
     private Token color;
+
     
     public Player(String name, char color, boolean turn) {
         this.name = name;
