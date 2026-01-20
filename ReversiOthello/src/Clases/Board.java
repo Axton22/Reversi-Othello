@@ -996,7 +996,7 @@ public class Board {
         }
         return null;
     }
-    public void buscarTodasLasOpciones(CharacterList listaParaLlenar) {
+    public void searchOptionsAvailable(CharacterList listaParaLlenar) {
     Node filaActual = aa; 
     
     while (filaActual != null) {
