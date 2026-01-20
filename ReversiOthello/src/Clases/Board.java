@@ -745,18 +745,18 @@ public class Board {
         char enemyColor = ' ';
 
         // Determina el color de las fichas del jugador actual
-        if (player.getColor().getState() == 'n') {
-            myColor = 'n';
-            enemyColor = 'b';
-        } else if(player.getColor().getState() == 'b') { 
-            myColor = 'b';
-            enemyColor = 'n';
+        if (player.getColor().getState() == 'N') {
+            myColor = 'N';
+            enemyColor = 'B';
+        } else if(player.getColor().getState() == 'N') { 
+            myColor = 'B';
+            enemyColor = 'N';
         }
 
         while (aux != null) {
 
             // Tiene que estar parado en una celda vacía
-            if (aux.getToken().getState() == 'v') {
+            if (aux.getToken().getState() == '_') {
                 boolean isValidCell = false;
 
                 /* Pregunta hacia una dirección en específico si la siguiente es el borde, 
@@ -832,20 +832,20 @@ public class Board {
     }
     
     public void showBoard() {
-    Node first = aa;
-    Node aux = first;
+        Node first = aa;
+        Node aux = first;
 
-    while (first != null) {
-        aux = first;
+        while (first != null) {
+            aux = first;
 
-        while (aux != null) {
-            System.out.print(aux.getToken().getState() + " ");
-            aux = aux.getEast();
+            while (aux != null) {
+                System.out.print(aux.getToken().getState() + " ");
+                aux = aux.getEast();
+            }
+
+            System.out.println(); // salto de línea al final de la fila
+            first = first.getSouth();
         }
-
-        System.out.println(); // salto de línea al final de la fila
-        first = first.getSouth();
-    }
     }
     
     
@@ -855,12 +855,12 @@ public class Board {
         char enemyColor = ' ';
 
         // Determina el color de las fichas del jugador actual
-        if (player.getColor().getState() == 'n') {
-            myColor = 'n';
-            enemyColor = 'b';
-        } else if (player.getColor().getState() == 'b') {
-            myColor = 'b';
-            enemyColor = 'n';
+        if (player.getColor().getState() == 'N') {
+            myColor = 'N';
+            enemyColor = 'B';
+        } else if (player.getColor().getState() == 'B') {
+            myColor = 'B';
+            enemyColor = 'N';
         }
 
         boolean isNorthEnclose = false;
@@ -1031,24 +1031,6 @@ public class Board {
         // Una vez insertada la ficha, se procede a voltera las que quedaron en encierro
         encloseDetector(player, node);
     }
-    
-    
 
-    public void cleanBoard() {
-        Node first = aa;
-        Node aux = first;
-        
-        while (aux != null) {
-            if (aux.getToken().getState() != 'n' && aux.getToken().getState() != 'b') {
-                aux.getToken().setState('v');
-            }
-            
-            aux = aux.getEast();
-            if (aux == null) {
-                first = first.getSouth();
-                aux = first;
-            }
-        }
-    }
     
 }
