@@ -7,14 +7,12 @@ package Clases;
  * Each node in the list is a {@link CharacterNode} that stores a character
  * and a flag indicating whether it has already been used.
  * </p>
- * <p>
  * This class is mainly used to:
  * <ul>
  *   <li>Store available characters</li>
  *   <li>Provide characters by index</li>
  *   <li>Reset usage state between turns</li>
  * </ul>
- * </p>
  *
  * @author Axton Urbina y Daniel Moreno
  */

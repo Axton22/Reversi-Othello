@@ -6,7 +6,6 @@ package Clases;
  * This class coordinates the interaction between the board, the players,
  * turn management, move validation, game progression, and winner detection.
  * </p>
- * <p>
  * It is responsible for:
  * <ul>
  *   <li>Managing turns</li>
@@ -15,7 +14,6 @@ package Clases;
  *   <li>Determining the end of the game</li>
  *   <li>Executing the main game loop</li>
  * </ul>
- * </p>
  *
  * @author Axton Urbina y Daniel Moreno
  */

@@ -8,7 +8,6 @@ package Clases;
  * node maintains references to its eight possible neighbors
  * (north, south, east, west, and diagonals).
  * </p>
- * <p>
  * This class is responsible for:
  * <ul>
  *   <li>Initializing the board structure</li>
@@ -17,7 +16,6 @@ package Clases;
  *   <li>Detecting enclosures (flips)</li>
  *   <li>Displaying the board</li>
  * </ul>
- * </p>
  *
  * @author Axton Urbina and Daniel Moreno
  */
@@ -996,7 +994,18 @@ public class Board {
         }
         return null;
     }
-    public void searchOptionsAvailable(CharacterList listaParaLlenar) {
+    
+    /**
+    * Traverses the entire board and stores in a list the characters
+    * corresponding to positions where a valid move can be made.The method examines each node on the board and adds to the list
+ those characters whose state does not represent a black ('N'),
+ white ('B'), or empty ('_') token.
+    *
+    *
+    * @param list the list that will be filled with the
+    *        available move options
+    */
+    public void searchOptionsAvailable(CharacterList list) {
     Node filaActual = aa; 
     
     while (filaActual != null) {
@@ -1005,7 +1014,7 @@ public class Board {
             char c = aux.getToken().getState();
             if(c != 'N' && c != 'B' && c != '_') {
 
-                listaParaLlenar.insert(c); 
+                list.insert(c); 
   
             }
             aux = aux.getEast();
